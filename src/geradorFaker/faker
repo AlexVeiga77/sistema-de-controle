@@ -1,0 +1,22 @@
+<?php
+
+require_once 'vendor/autoload.php';
+use App\Entity\Funcionario;
+
+
+{
+    $faker = \Faker\Factory::create('pt_BR');
+    $faker->addProvider($this);
+    $funcionario = $this->table('funcionario'); //Guardando a tabela na variável
+    $data = [];
+    foreach (range(1, 20) as $value) {
+        $data[] = [
+
+            'nome' => $faker->Name(),
+            'date_admissao' => date('Y-m-d H:i:s'),
+            'date_exoneracao' => date('Y-m-d H:i:s')
+        ];
+    }
+
+    $funcionario->insert($data)->save();
+}

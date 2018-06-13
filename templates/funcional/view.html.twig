@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualização {% endblock %}
+
+{% block body %}
+
+    <h1>
+        Visualizar funcionarios -
+        <small>{{ funcionario.nome }}</small>
+    </h1>
+    <hr>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Cod.</th>
+            <td>{{ funcionario.id }}</td>
+        </tr>
+        <tr>
+            <th>Secretaria</th>
+            <td>{{ funcionario.secretaria.nome }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ funcionario.nome }}</td>
+        </tr>
+        <tr>
+            <th>Idade</th>
+            <td>{{ funcionario.idade }}</td>
+        </tr>
+        <tr>
+            <th>Cargo</th>
+            <td>{{ funcionario.cargo }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td> {% if funcionario.status == "A"%}
+                    <p>Ativo</p>
+                {% elseif funcionario.status == "E"%}
+                    <p>Exonerado</p>
+                {% endif %}</td>
+        </tr>
+        <tr>
+            <th>Data da Admissão</th>
+            <td>{{ funcionario.dataAdmissao|date("d/m/Y") }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <a href="{{ path('listar_funcionario') }}" class="btn btn-primary">voltar</a>
+
+{% endblock %}

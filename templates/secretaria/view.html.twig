@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualização {% endblock %}
+
+{% block body %}
+
+    <h1>
+        Visualizar secretaria -
+        <small>{{ secretaria.nome }}</small>
+    </h1>
+    <hr>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Cod.</th>
+            <td>{{ secretaria.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ secretaria.nome }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <hr>
+    <a href="{{ path('listar_secretaria') }}" class="btn btn-primary">voltar</a>
+
+{% endblock %}

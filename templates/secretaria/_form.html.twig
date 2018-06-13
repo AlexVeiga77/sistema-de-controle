@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <main class="container mt-5">
+        {% form_theme form with 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(form, {"attr":{"novalidate":"novalidate"}}) }}
+        {{ form_widget(form) }}
+        <br>
+
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

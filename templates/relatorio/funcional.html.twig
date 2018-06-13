@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relatórios - {% endblock %}
+
+{% block body %}
+    <h1>Relatório de Funcionários</h1>
+    <main class="container mt-5">
+        {% form_theme form with 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(form, {"attr":{"novalidate":"novalidate"}}) }}
+        {{ form_widget(form) }}
+        <br>
+        {{ form_end(form) }}
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Mat.</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Status</th>
+                <th>Data de admissão</th>
+                <th>Data de exoneração</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for funcionario in funcionarios %}
+                <tr>
+                    <td>{{ funcionario.id }}</td>
+                    <td>{{ funcionario.nome }}</td>
+                    <td> {% if funcionario.cargo == "C"%}
+                            <p>Comissionado</p>
+                        {% elseif funcionario.cargo == "E"%}
+                            <p>Efetivo</p>
+                        {% endif %}
+                    </td>
+                    <td> {% if funcionario.status == "A"%}
+                            <p>Ativo</p>
+                        {% elseif funcionario.status == "E"%}
+                            <p>Exonerado</p>
+                        {% endif %}</td>
+                    <td>{{ funcionario.dataAdmissao|date('d/m/Y')}}</td>
+                    <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="18">no records found</td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+            <tr>
+            </tr>
+        </table>
+
+        <a href='{{ path('relatorio') }}' class="btn btn-primary btn-sm">Voltar</a>
+
+    </main>
+{% endblock %}

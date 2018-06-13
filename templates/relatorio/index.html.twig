@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relatorio {% endblock %}
+
+{% block body %}
+    <h1 class="display-3">Relatórios</h1>
+    <table class="table table-striped table-hover">
+        <br>
+        <tbody>
+        <thead>
+        <tr>
+            <th> Período por Admissão/Exoneração <a href="{{ path('relatorio_funcionario') }}" class="btn btn-primary">Gerar
+                    relatório</a>
+            </th>
+        </tr>
+        </thead>
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
