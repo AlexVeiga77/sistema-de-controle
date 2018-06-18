@@ -134,5 +134,6 @@ class RelatorioController extends Controller
         $writer->save('php://output');
 
     }
+
 }
 

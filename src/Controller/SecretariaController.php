@@ -72,6 +72,7 @@ class SecretariaController extends Controller
             'form' => $form->createView()
         ];
     }
+
     /**
      * @param Request $request
      * @param $id

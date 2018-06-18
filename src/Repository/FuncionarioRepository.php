@@ -49,6 +49,19 @@ class FuncionarioRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function salarioTotal()
+    {
+        $q = $this->createQueryBuilder("f")
+            ->select('s.nome, SUM(f.salario_liquido) as total')
+            ->join("App\Entity\Secretaria", 's', Join::WITH, 'f.Secretaria = s.id')
+            ->where('f.status = :status ')
+            ->groupBy("s.nome")
+            ->setParameter(':status', 'A')
+            ->getQuery();
+        return $q->getResult();
+    }
+
     public function getFuncionarioPorData($dataInicio, $dataFim, $status)
     {
         $d = $this->createQueryBuilder("f");
@@ -65,6 +78,7 @@ class FuncionarioRepository extends ServiceEntityRepository
         $d->setParameter('data1', $dataInicio->format('Y-m-d'));
         $d->setParameter('data2', $dataFim->format('Y-m-d'));
         return $d->getQuery()->getResult();
+
     }
 
 }

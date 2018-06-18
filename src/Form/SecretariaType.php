@@ -20,6 +20,7 @@ class SecretariaType extends AbstractType
             ->add('nome', TextType::class, [
                 'label' => "Nome",
                 'attr' => [
+
                     'class' => 'form-control',
                     'placeholder' => "Informe seu nome",
                 ]
