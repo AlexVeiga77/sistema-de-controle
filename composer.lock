@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbecd3027aeb0b782a594bb9b8fd307e",
+    "content-hash": "c92947c0ecaa7ce075087adafb1b5070",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1446,75 +1446,6 @@
                 "service proxies"
             ],
             "time": "2017-05-04T11:12:50+00:00"
-        },
-        {
-            "name": "onurb/excel-bundle",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Nono1971/excel-bundle.git",
-                "reference": "e055cc7d6e22864725c0fe48499d8256e522f1db"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Nono1971/excel-bundle/zipball/e055cc7d6e22864725c0fe48499d8256e522f1db",
-                "reference": "e055cc7d6e22864725c0fe48499d8256e522f1db",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6",
-                "phpoffice/phpspreadsheet": "~1.0",
-                "symfony/config": "~3.2|~4.0",
-                "symfony/dependency-injection": "~3.2|~4.0",
-                "symfony/framework-bundle": "~3.2|~4.0",
-                "symfony/http-foundation": "~3.2|~4.0",
-                "symfony/http-kernel": "~3.2|~4.0"
-            },
-            "require-dev": {
-                "php": ">=7.0",
-                "phpunit/phpunit": "~6.5",
-                "sensio/framework-extra-bundle": "~3.2|~4.0",
-                "squizlabs/php_codesniffer": "~2"
-            },
-            "suggest": {
-                "onurb/doctrine-yuml-bundle": "Use this bundle to generate mapping graph from your entities"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "symfony": {
-                    "allow-contrib": "true"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Onurb\\Bundle\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Giulio De Donato",
-                    "email": "liuggio@gmail.com"
-                },
-                {
-                    "name": "Bruno Heron",
-                    "email": "herobrun@gmail.com"
-                }
-            ],
-            "description": "Symfony Bundle to read or write Excel file (including pdf, xlsx, odt), using phpoffice/phpspreadsheet library (replacement of phpoffice/phpexcel, abandonned)",
-            "keywords": [
-                "PHPExcel",
-                "bundle",
-                "excel",
-                "spreadsheet",
-                "symfony",
-                "xls",
-                "xlsx"
-            ],
-            "time": "2018-03-28T20:50:04+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -5381,6 +5312,75 @@
                 "productivity"
             ],
             "time": "2018-01-10T08:34:20+00:00"
+        },
+        {
+            "name": "onurb/excel-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nono1971/excel-bundle.git",
+                "reference": "e055cc7d6e22864725c0fe48499d8256e522f1db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nono1971/excel-bundle/zipball/e055cc7d6e22864725c0fe48499d8256e522f1db",
+                "reference": "e055cc7d6e22864725c0fe48499d8256e522f1db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "phpoffice/phpspreadsheet": "~1.0",
+                "symfony/config": "~3.2|~4.0",
+                "symfony/dependency-injection": "~3.2|~4.0",
+                "symfony/framework-bundle": "~3.2|~4.0",
+                "symfony/http-foundation": "~3.2|~4.0",
+                "symfony/http-kernel": "~3.2|~4.0"
+            },
+            "require-dev": {
+                "php": ">=7.0",
+                "phpunit/phpunit": "~6.5",
+                "sensio/framework-extra-bundle": "~3.2|~4.0",
+                "squizlabs/php_codesniffer": "~2"
+            },
+            "suggest": {
+                "onurb/doctrine-yuml-bundle": "Use this bundle to generate mapping graph from your entities"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "allow-contrib": "true"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onurb\\Bundle\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Giulio De Donato",
+                    "email": "liuggio@gmail.com"
+                },
+                {
+                    "name": "Bruno Heron",
+                    "email": "herobrun@gmail.com"
+                }
+            ],
+            "description": "Symfony Bundle to read or write Excel file (including pdf, xlsx, odt), using phpoffice/phpspreadsheet library (replacement of phpoffice/phpexcel, abandonned)",
+            "keywords": [
+                "PHPExcel",
+                "bundle",
+                "excel",
+                "spreadsheet",
+                "symfony",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2018-03-28T20:50:04+00:00"
         },
         {
             "name": "symfony/browser-kit",

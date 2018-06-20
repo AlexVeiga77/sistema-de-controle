@@ -132,5 +132,6 @@ class FuncionarioController extends Controller
         return $this->redirectToRoute("listar_funcionario");
     }
 
+
 }
 
