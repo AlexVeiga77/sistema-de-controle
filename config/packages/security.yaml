@@ -29,16 +29,13 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/funcional, roles: ROLE_ADMINISTRADOR }
-        - { path: ^/admin/secretaria, roles: ROLE_ADMINISTRADOR }
-        - { path: ^/admin/relatorio, roles: ROLE_ADMINISTRADOR }
-
-        - { path: ^/admin/funcional, roles: ROLE_GERENTE }
-        - { path: ^/admin/secretaria, roles: ROLE_GERENTE }
-        - { path: ^/admin/relatorio, roles: ROLE_GERENTE }
-
-        - { path: ^/admin/funcional, roles: ROLE_OPERADOR }
-
+        - { path: ^/funcional, roles: ROLE_GERENTE }
+        - { path: ^/secretaria, roles: ROLE_GERENTE }
+        - { path: ^/relatorio, roles: ROLE_GERENTE }
+        - { path: ^/funcional/visualizar, roles: ROLE_OPERADOR }
+        - { path: ^/funcional/cadastrar, roles: ROLE_OPERADOR }
+        - { path: ^/funcional/editar , roles: ROLE_OPERADOR }
+        - { path: ^/, roles: ROLE_OPERADOR }
 
     role_hierarchy:
         ROLE_ADMINISTRADOR: [ROLE_GERENTE]

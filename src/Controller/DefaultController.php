@@ -25,6 +25,24 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/admin", name="admin")
+     * @Template ("default/index.html.twig")
+     */
+    public function admin()
+    {
+
+        $texto = "Esse usuário não é admin.";
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $texto = "Esse usuário é um Administrador!";
+        }
+        return [
+            'texto' => $texto
+        ];
+    }
+
+
+    /**
      * @Route("/admin/login", name="login" )
      * @Template("default/login.html.twig")
      * @param Request $request
@@ -42,62 +60,6 @@ class DefaultController extends Controller
         ];
     }
 
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function admin()
-    {
-
-        $texto = "Esse usuário não é admin.";
-
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $texto = "Esse usuário é um Administrador!";
-        }
-        return [
-            'texto' => $texto
-        ];
-    }
-
-    /**
-     * @param Request $request
-     * @Route("/insert")
-     * @return Response
-     */
-    public function insert(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = new User();
-        $user->setUsername("carlos");
-        $user->setRoles("Role_ADMINISTRADOR");
-
-        $encoder = $this->get('security.password_encoder');
-        $pass = $encoder->encodePassword($user, "aaa");
-        $user->setPassword($pass);
-        $em->persist($user);
-
-        $user = new User();
-        $user->setUsername("Roberto");
-        $user->setRoles("Role_GERENTE");
-
-        $encoder = $this->get('security.password_encoder');
-        $pass = $encoder->encodePassword($user, "bbb");
-        $user->setPassword($pass);
-        $em->persist($user);
-
-        $user = new User();
-        $user->setUsername("Mario");
-        $user->setRoles("Role_OPERADOR");
-
-        $encoder = $this->get('security.password_encoder');
-        $pass = $encoder->encodePassword($user, "ccc");
-        $user->setPassword($pass);
-        $em->persist($user);
-
-        $em->flush();
-
-        return new Response("<h1>Inserido com sucesso!</h1>");
-    }
 }
 
 

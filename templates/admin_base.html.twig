@@ -12,17 +12,17 @@
     <div class="row mt-5">
         <div class="col-md-12">
 
-            {% if is_granted("ROLE_ADMINISTRADOR") %}
+            {% if is_granted("ROLE_OPERADOR") %}
                 <a href="{{ path('admin') }}" class="btn btn-default"></a>
             {% endif %}
-            {% if is_granted("ROLE_ADMINISTRADOR") %}
+            {% if is_granted("ROLE_OPERADOR") %}
                 <a href="{{ path('funcional') }}" class="btn btn-default"></a>
             {% endif %}
-            {% if is_granted("ROLE_ADMINISTRADOR") %}
+            {% if is_granted("ROLE_GERENTE") %}
                 <a href="{{ path('secretaria') }}" class="btn btn-default"></a>
             {% endif %}
-            {% if is_granted("ROLE_OPERADOR") %}
-                <a href="{{ path('funcionario') }}" class="btn btn-default"></a>
+            {% if is_granted("ROLE_GERENTE") %}
+                <a href="{{ path('relatorio') }}" class="btn btn-default"></a>
             {% endif %}
         </div>
     </div>
