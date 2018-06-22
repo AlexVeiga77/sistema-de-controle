@@ -9,17 +9,16 @@
 
     <form class="form-signin" method="post" action="{{ path('login') }}">
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email Username</label>
-        <input type="text" name="_username" id="username" value="{{ last_username }}" class="form-control" placeholder="informe seu username" required autofocus>
+        <h1 class="h3 mb-3 font-weight-normal">Acesso</h1>
+        <input type="text" name="_username" id="username" value="{{ last_username }}" class="form-control" placeholder="informe seu nome" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="_password" id="Password" class="form-control" placeholder="informe sua senha" required>
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> lembrar
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">entrar</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
 

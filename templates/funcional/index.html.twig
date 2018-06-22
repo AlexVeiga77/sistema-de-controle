@@ -14,7 +14,9 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
+            {% if is_granted("ROLE_OPERADOR") %}
             <a href="{{ path('cadastrar_funcionario') }} " class="btn btn-primary btn-lg float-right">Adicionar</a>
+            {% endif %}
         </div>
     </div>
 
@@ -38,14 +40,20 @@
                 <td>{{ funcionario.idade }}</td>
                 <td>{{ funcionario.sexo }}</td>
                 <td>
+                    {% if is_granted("ROLE_ADMINISTRADOR") %}
                     <a class="btn btn-sm btn-warning" href="{{ path('visualizar_funcionario',{"id":funcionario.id}) }}"><i
                                 class="fas fa-eye"></i></a>
+                    {% endif %}
+                    {% if is_granted("ROLE_OPERADOR") %}
                     <a class="btn btn-sm btn-success"
                        href="{{ path('editar_funcionario',{"id":funcionario.id}) }}"><i
                                 class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMINISTRADOR") %}
                     <a class="btn btn-sm btn-danger bt_excluir_funcionario"
                        href="{{ path('deletar_funcionario',{"id":funcionario.id}) }}"><i
                             class="fas fa-trash"></i></a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

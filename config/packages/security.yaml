@@ -23,19 +23,17 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             logout:
                 path: /logout
-                target: /admin/login
+                target: /login
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/funcional, roles: ROLE_GERENTE }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/funcional, roles: ROLE_OPERADOR }
         - { path: ^/secretaria, roles: ROLE_GERENTE }
         - { path: ^/relatorio, roles: ROLE_GERENTE }
         - { path: ^/user, roles: ROLE_GERENTE }
-        - { path: ^/funcional/visualizar, roles: ROLE_OPERADOR }
-        - { path: ^/funcional/cadastrar, roles: ROLE_OPERADOR }
-        - { path: ^/funcional/editar , roles: ROLE_OPERADOR }
+
         - { path: ^/, roles: ROLE_OPERADOR }
 
     role_hierarchy:

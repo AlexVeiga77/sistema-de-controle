@@ -24,26 +24,9 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/admin", name="admin")
-     * @Template ("default/index.html.twig")
-     */
-    public function admin()
-    {
-
-        $texto = "Esse usuário não é admin.";
-
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $texto = "Esse usuário é um Administrador!";
-        }
-        return [
-            'texto' => $texto
-        ];
-    }
-
 
     /**
-     * @Route("/admin/login", name="login" )
+     * @Route("/login", name="login" )
      * @Template("default/login.html.twig")
      * @param Request $request
      * @param AuthenticationUtils $authUtils
