@@ -32,6 +32,7 @@ security:
         - { path: ^/funcional, roles: ROLE_GERENTE }
         - { path: ^/secretaria, roles: ROLE_GERENTE }
         - { path: ^/relatorio, roles: ROLE_GERENTE }
+        - { path: ^/user, roles: ROLE_GERENTE }
         - { path: ^/funcional/visualizar, roles: ROLE_OPERADOR }
         - { path: ^/funcional/cadastrar, roles: ROLE_OPERADOR }
         - { path: ^/funcional/editar , roles: ROLE_OPERADOR }

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/user")
@@ -38,7 +39,6 @@ class UserController extends Controller
             $pass = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($pass);
             $em->persist($user);
-            $em->persist($user);
             $em->flush();
             $this->addFlash('sucess', "usuario salvo com sucesso");
             return $this->redirectToRoute('user_index');
@@ -67,11 +67,11 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager()->flush();
+
             $encoder = $this->get('security.password_encoder');
             $pass = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($pass);
-            $em->persist($user);
+            $em = $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
@@ -83,16 +83,25 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="user_delete", methods="DELETE")
+     * @param Request $request
+     * @param $id
+     * @Route ("user/apagar/{id}", name="user_delete")
+     * @return Response
      */
-    public function delete(Request $request, User $user)
+    public function delete(Request $request, $id)
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        if (!$user) {
+            $mensagem = "usuario não foi encontrado";
+            $tipo = "warning";
+        } else {
             $em->remove($user);
             $em->flush();
+            $mensagem = "Funcionario excluído com sucesso!!!";
+            $tipo = "success";
         }
-
-        return $this->redirectToRoute('user_index');
+        $this->get('session')->getFlashBag()->set($tipo, $mensagem);
+        return $this->redirectToRoute("user_index");
     }
 }
