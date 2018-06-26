@@ -53,8 +53,8 @@ class FuncionarioRepository extends ServiceEntityRepository
     public function salarioTotal()
     {
         $q = $this->createQueryBuilder("f")
-            ->select('s.nome, SUM(f.salario_liquido) as total')
-            ->join("App\Entity\Secretaria", 's', Join::WITH, 'f.Secretaria = s.id')
+            ->select('s.nome, SUM(f.liquido) as total')
+            ->join("App\Entity\Secretaria", 's', Join::WITH, 'f.secretaria = s.id')
             ->where('f.status = :status ')
             ->groupBy("s.nome")
             ->setParameter(':status', 'A')

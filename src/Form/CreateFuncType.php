@@ -72,6 +72,9 @@ class CreateFuncType extends AbstractType
                     'placeholder' => "Informe seu cpf",
                 ]
             ])
+            ->add('imagem_documento', FileType::class, [
+                'label' => 'Selecione a imagem do cpf'
+            ])
             ->add('data_admissao', DateType::class, [
                 'widget' => 'single_text',
 

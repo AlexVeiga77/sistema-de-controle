@@ -86,6 +86,10 @@ class FuncionarioType extends AbstractType
                     'placeholder' => "Informe seu cpf",
                 ]
             ])
+            ->add('imagem_documento', FileType::class, [
+                'label' => 'imagem_documento (PDF file)'
+
+            ])
             ->add('data_admissao', DateType::class, [
                 'widget' => 'single_text',
 

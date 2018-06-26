@@ -72,6 +72,15 @@ class Funcionario
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={"application/pdf"}, mimeTypesMessage="arquivo invalido")
+     * @Assert\NotBlank(message = "selecione um pdf para esse campo")
+     */
+    private $imagem_documento;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=14)
      * @Assert\Notblank()
      * @Assert\Choice(choices={"Efetivo", "Comissionado"})
@@ -237,6 +246,23 @@ class Funcionario
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getImagemDocumento()
+    {
+        return $this->imagem_documento;
+    }
+
+    /**
+     * @param string $imagem_documento
+     * @return Funcionario
+     */
+    public function setImagemDocumento($imagem_documento)
+    {
+        $this->imagem_documento = $imagem_documento;
+        return $this;
+    }
 
     public function getCargo()
     {

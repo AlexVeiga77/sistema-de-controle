@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Secretaria;
 use App\Enum\FuncionarioStatusEnum;
+use App\Form\RelatorioSecretariaType;
 use App\Form\RelatorioType;
 use App\Repository\FuncionarioRepository;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -103,7 +105,7 @@ class RelatorioController extends Controller
 
         $total = $funcionarios;
 
-        $plan=$spreadsheet->getActiveSheet(); //retornando a aba ativa
+        $plan = $spreadsheet->getActiveSheet(); //retornando a aba ativa
 
         $plan->setCellValue('A1', 'Mat.');
         $plan->setCellValue('B1', 'Nome');
@@ -135,5 +137,36 @@ class RelatorioController extends Controller
 
     }
 
-}
+    /**
+     * @param Request $request
+     *
+     * @Route("/relatorio/secretaria",name="relatorio_secretaria")
+     * @Template("relatorio/secretaria.html.twig")
+     * @return Response
+     */
+    public function relatorioSecretaria(Request $request, FuncionarioRepository $funcionarioRepository)
+    {
+        return $this->render(
+            'relatorio/secretaria.html.twig',
+            ['totalSalariosLiquido' => $funcionarioRepository->salarioTotal()]
+        );
+    }
 
+    /**
+     * @Route("/relatorio/secretaria_pdf", name="secretaria_pdf")
+     */
+    public function secretariaPdf(Request $request, FuncionarioRepository $funcionarioRepository)
+    {
+
+        $view = $this->renderView(
+            'relatorio/secretaria_pdf.html.twig',
+            ['totalSalariosLiquido' => $funcionarioRepository->salarioTotal()]
+        );
+        $domPdf = new Dompdf();
+        $domPdf->loadHtml($view);
+        $domPdf->setPaper('A4', 'portrait');
+        $domPdf->render();
+        return $domPdf->stream("Relatório_Secretaria.pdf");
+    }
+
+    }

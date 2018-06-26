@@ -6,6 +6,7 @@ use App\Entity\Funcionario;
 use App\Entity\Secretaria;
 use App\Form\CreateFuncType;
 use App\Form\FuncionarioType;
+use Symfony\Component\HttpFoundation;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use App\Repository\FuncionarioRepository;
@@ -39,7 +40,7 @@ class FuncionarioController extends Controller
      * @param Request $request
      * @Route ("/funcional/cadastrar", name="cadastrar_funcionario")
      * @Template("funcional/create.html.twig")
-     * @return Response
+     * @return array
      */
     public function create(Request $request)
     {
@@ -48,9 +49,14 @@ class FuncionarioController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            //$funcionario->setStatus('A');
+            $file = $funcionario->getImagemDocumento();
+            $fileName = md5(time()) . "." . $file->guessExtension(); //gerando um nome único
+            $file->move(
+                $this->getParameter('caminho_file'),
+                $fileName);
+            $funcionario->setImagemDocumento($fileName);
             $funcionario->calculoLiquido();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($funcionario);
             $em->flush();
 
@@ -95,6 +101,12 @@ class FuncionarioController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $funcionario->getImagemDocumento();
+            $fileName = md5(time()) . "." . $file->guessExtension(); //gerando um nome único
+            $file->move(
+                $this->getParameter('caminho_file'),
+                $fileName);
+            $funcionario->setImagemDocumento($fileName);
             //$em = $this->getDoctrine()->getManager();
             $funcionario->calculoLiquido();
             $em->persist($funcionario);
