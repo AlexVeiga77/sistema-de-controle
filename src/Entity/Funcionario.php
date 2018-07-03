@@ -65,7 +65,7 @@ class Funcionario
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=12, unique=true)
+     * @ORM\Column(type="string", length=16, unique=true)
      * @Assert\NotBlank(message="O campo nome não pode ser vazio!")
      */
     private $cpf;
