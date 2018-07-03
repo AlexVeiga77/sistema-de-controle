@@ -25,6 +25,7 @@ class SecretariaController extends Controller
             'secretarias' => $secretarias
         ];
     }
+
     /**
      * @param Request $request
      * @Route ("/secretaria/cadastrar", name="cadastrar_secretaria")
@@ -49,6 +50,7 @@ class SecretariaController extends Controller
             'form' => $form->createView()
         ];
     }
+
     /**
      * @param Request $request
      * @Route ("/secretaria/editar/{id}", name="editar_secretaria")
@@ -88,4 +90,28 @@ class SecretariaController extends Controller
             'secretaria' => $secretaria
         ];
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @Route ("secretaria/apagar/{id}", name="deletar_secretaria")
+     * @return Response
+     */
+    public function delete(Request $request, $id, Secretaria $secretaria)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $secretaria = $em->getRepository(Secretaria::class)->find($id);
+        if (!$secretaria) {
+            $mensagem = "Secretaria não foi encontrado";
+            $tipo = "warning";
+        } else {
+            $em->remove($secretaria);
+            $em->flush();
+            $mensagem = "Secretaria excluído com sucesso!!!";
+            $tipo = "success";
+        }
+        $this->get('session')->getFlashBag()->set($tipo, $mensagem);
+        return $this->redirectToRoute("listar_secretaria");
+    }
+
 }

@@ -6,6 +6,7 @@
         "ext-iconv": "*",
         "dompdf/dompdf": "^0.8.2",
         "fzaninotto/faker": "^1.7",
+        "igorescobar/jquery-mask-plugin": "^1.14",
         "phpoffice/phpspreadsheet": "^1.2",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "^4.0",

@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\SubmitButton;
+use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CreateFuncType extends AbstractType
@@ -66,10 +67,11 @@ class CreateFuncType extends AbstractType
                     'Cargo_Comissionado' => 'Comissionado'
                 ]
             ])
-            ->add('cpf', IntegerType::class, [
-                'label' => "CPF",
-                'attr' => [
-                    'placeholder' => "Informe seu cpf",
+            ->add('cpf', TextType::class, [
+                'required' => true,
+                'attr' => ['data-mask' => '000.000.000-00',
+                    'placeholder' => 'somente numeros',
+                    'pattern' => "\d{3}\.\d{3}\.\d{3}-\d{2}"
                 ]
             ])
             ->add('imagem_documento', FileType::class, [
@@ -81,24 +83,28 @@ class CreateFuncType extends AbstractType
             ])
             ->add('sal_base', MoneyType::class, [
                 'label' => "Salário Base",
+                'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => "Informe seu salário",
                 ]
             ])
             ->add('gratif', MoneyType::class, [
                 'label' => "Gratificação",
+                'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => "Informe sua gratificação",
                 ]
             ])
             ->add('desconto', MoneyType::class, [
                 'label' => "Desconto",
+                'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => "Informe sua gratificação",
                 ]
             ])
             ->add('liquido', MoneyType::class, [
                 'label' => "Salário Líquido",
+                'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => "Valor do líquido",
                 ]

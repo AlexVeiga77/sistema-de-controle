@@ -77,6 +77,9 @@
     "fzaninotto/faker": {
         "version": "v1.7.1"
     },
+    "igorescobar/jquery-mask-plugin": {
+        "version": "v1.14.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
