@@ -36,14 +36,13 @@ class Funcionario
      * @var integer
      * @ORM\Column(type="integer")
      * @Assert\Notblank()
-     * @Assert\Range(min="0", max="50")
+     * @Assert\Range(min="0", max="70")
      */
     private $idade;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=1)
-     * @Assert\Notblank()
      * @Assert\Choice(choices={"M","F"})
      */
     private $sexo;
@@ -90,6 +89,7 @@ class Funcionario
     /** @var \Date
      * @ORM\Column(type="date")
      * @Assert\Date()
+     * @Assert\Notblank()
      *
      */
     private $data_admissao;

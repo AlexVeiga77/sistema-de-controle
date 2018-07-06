@@ -27,19 +27,20 @@
                 <tr>
                     <td>{{ funcionario.id }}</td>
                     <td>{{ funcionario.nome }}</td>
-                    <td> {% if funcionario.cargo == "C"%}
+                    <td> {% if funcionario.cargo == "Comissionado" %}
                             <p>Comissionado</p>
-                        {% elseif funcionario.cargo == "E"%}
+                        {% elseif funcionario.cargo == "Efetivo" %}
                             <p>Efetivo</p>
                         {% endif %}
                     </td>
-                    <td> {% if funcionario.status == "A"%}
+                    <td> {% if funcionario.status == "A" %}
                             <p>Ativo</p>
-                        {% elseif funcionario.status == "E"%}
+                        {% elseif funcionario.status == "E" %}
                             <p>Exonerado</p>
                         {% endif %}</td>
-                    <td>{{ funcionario.dataAdmissao|date('d/m/Y')}}</td>
+                    <td>{{ funcionario.dataAdmissao|date('d/m/Y') }}</td>
                     <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
+
 
                 </tr>
             {% else %}
