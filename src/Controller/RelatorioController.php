@@ -38,7 +38,6 @@ class RelatorioController extends Controller
     /**
      * @param Request $request
      * @Route("/relatorio/funcional", name="relatorio_funcionario")
-     * @Template("relatorio/funcional.html.twig")
      * @return Response
      */
     public function relatorioFuncionario(Request $request, FuncionarioRepository $funcionarioRepository)
@@ -65,7 +64,17 @@ class RelatorioController extends Controller
             $excelClicked = $form->get('excel')->isClicked();
 
             if ($excelClicked) {
-                return $this->funcionarioXls($funcionarios);
+                $plan = $this->funcionarioXls($funcionarios);
+
+                return new Response(
+                    $plan, 200,
+                    array(
+                        'Content-Type' => 'application/vnd.ms-excel',
+                        'Content-Disposition'
+                        => 'attachment; filename="myfile.xlsx"',
+                    )
+                );
+
             }
 
         }
@@ -128,13 +137,11 @@ class RelatorioController extends Controller
             $plan->setCellValue('F' . $contador, $linha->getDataExoneracao());
 
         }
-        header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
-        header('Content-Disposition: attachment; filename="test.xlsx"');
-        header('Cache-Control: max-age=0');
 
         $writer = new Xlsx ($spreadsheet);
+        ob_start();
         $writer->save('php://output');
-
+        return ob_get_clean();
     }
 
     /**
@@ -169,4 +176,4 @@ class RelatorioController extends Controller
         return $domPdf->stream("Relatório_Secretaria.pdf");
     }
 
-    }
+}
